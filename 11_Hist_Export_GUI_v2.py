@@ -228,10 +228,10 @@ class Export:
         return rounded
 
     def history(self, calc_history):
-        History(self, calc_history)
+        Export(self, calc_history)
 
 
-class History:
+class Export:
     def __init__(self, partner, calc_history):
 
         background = "#a9ef99"  # Pale green
