@@ -20,7 +20,7 @@ class Converter:
         # Temperature Converter Heading (row 0)
         self.temp_heading_label = Label(self.converter_frame,
                                         text="Temperature Converter",
-                                        font="Arial 19 bold",
+                                        font="Arial 9 bold",
                                         bg=background_color,
                                         padx=10, pady=10)
         self.temp_heading_label.grid(row=0)
