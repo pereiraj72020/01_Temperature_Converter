@@ -266,7 +266,6 @@ class Export:
             # close file
             f.close()
 
-        # Correct✔ part 7 ----------------------------------------------------------------------------------------------
 
             # close dialogue
             self.close_export(partner)
