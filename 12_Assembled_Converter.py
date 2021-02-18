@@ -313,7 +313,7 @@ class Export:
 
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel",
                                     command=partial(self.close_export, partner))
-        self.cancel_button.grid(row=0, colomn=1)
+        self.cancel_button.grid(row=0, column=1)
 
     def save_history(self, partner, calc_history):
 
