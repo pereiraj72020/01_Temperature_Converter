@@ -11,12 +11,7 @@ class Converter:
 
         # In actual program this is blank and is populated with uer calculations
 
-        self.all_calc_list = ['5 degrees C is -17.2 degrees F',
-                              '6 degrees C is -16.7 degrees F',
-                              '7 degrees C is 16.1 degrees F',
-                              '8 degrees C is -15.8 degrees F',
-                              '9 degrees C is -15.1 degrees F',
-                              ]
+        self.all_calc_list = []
 
         # Initialise the list to hold calculation history
         # self.all_calc_list = []
@@ -28,10 +23,10 @@ class Converter:
 
         # Temperature Converter Heading (row 0)
         self.temp_converter_label = Label(self.converter_frame,
-                                        text="Temperature Converter",
-                                        font=("Arial", "16", "bold"),
-                                        bg=background_color,
-                                        padx=10, pady=10)
+                                          text="Temperature Converter",
+                                          font=("Arial", "16", "bold"),
+                                          bg=background_color,
+                                          padx=10, pady=10)
         self.temp_converter_label.grid(row=0)
 
         # User instructions (row 1)
@@ -90,7 +85,7 @@ class Converter:
     def temp_convert(self, low):
         print(low)
 
-        error = "#ffafaf"   # Pale pink background for when entry box has errors
+        error = "#ffafaf"  # Pale pink background for when entry box has errors
 
         # Retrieve amount entered into Entry field
         to_convert = self.to_convert_entry.get()
@@ -101,14 +96,14 @@ class Converter:
 
             # Check and convert to Fahrenheit
             if low == -273 and to_convert >= low:
-                fahrenheit = (to_convert * 9/5) + 32
+                fahrenheit = (to_convert * 9 / 5) + 32
                 to_convert = self.round_it(to_convert)
                 fahrenheit = self.round_it(fahrenheit)
                 answer = "{} degrees C is {} degrees F".format(to_convert, fahrenheit)
 
             # Check and convert to Centigrade
-            elif low == -459 and to_convert >=low:
-                celsius = (to_convert -32) * 5/9
+            elif low == -459 and to_convert >= low:
+                celsius = (to_convert - 32) * 5 / 9
                 to_convert = self.round_it(to_convert)
                 celsius = self.round_it(to_convert)
                 answer = "{} degrees C is {} degrees F".format(to_convert, celsius)
@@ -149,13 +144,13 @@ class Converter:
     def help(self):
         get_help = Help(self)
         get_help.help_text.configure(text="Please enter a number in the box "
-                                     " and then push one of the buttons "
-                                     "convert the number to either "
-                                     "degree C or degrees F. \n\n"
-                                     "The Calculation History area shows up to seven past calculations "
-                                     "(most recent at the top). \n\nYou can "
-                                     "also export your full calculation "
-                                     "history to a text file if desired. ")
+                                          " and then push one of the buttons "
+                                          "convert the number to either "
+                                          "degree C or degrees F. \n\n"
+                                          "The Calculation History area shows up to seven past calculations "
+                                          "(most recent at the top). \n\nYou can "
+                                          "also export your full calculation "
+                                          "history to a text file if desired.")
 
 
 class History:
@@ -230,8 +225,8 @@ class History:
 
         # Dismiss button
         self.dismiss_button = Button(self.export_dismiss_frame, text="Dismiss",
-                                  font="arial 10 bold",
-                                  command=partial(self.close_history, partner))
+                                     font="arial 10 bold",
+                                     command=partial(self.close_history, partner))
         self.dismiss_button.grid(row=0, column=1)
 
     def close_history(self, partner):
@@ -377,7 +372,6 @@ class Export:
 
     class Help:
         def __init__(self, partner):
-
             background = "#a9ef99"  # Pale green
 
             # disable Help button
@@ -414,6 +408,7 @@ class Export:
             # put Help button back to normal...
             partner.Help_button.config(state=NORMAL)
             self.help_box.destroy()
+
 
 # main routine
 if __name__ == "__main__":
