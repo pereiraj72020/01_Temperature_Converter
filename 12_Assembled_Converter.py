@@ -308,7 +308,7 @@ class Export:
 
         # Save and Cancel Buttons (row 0 of save_cancel_frame
         self.save_button = Button(self.save_cancel_frame, text="Save",
-                                  command=partial(lambda: self.save_history(partner)))
+                                  command=partial(lambda: self.save_history(partner, calc_history)))
         self.save_button.grid(row=0, column=0)
 
         self.cancel_button = Button(self.save_cancel_frame, text="Cancel",
@@ -370,44 +370,45 @@ class Export:
         partner.export_button.config(state=NORMAL)
         self.export_box.destroy()
 
-    class Help:
-        def __init__(self, partner):
-            background = "#a9ef99"  # Pale green
 
-            # disable Help button
-            partner.Help_button.config(state=DISABLED)
+class Help:
+    def __init__(self, partner):
+        background = "#a9ef99"  # Pale green
 
-            # Sets up child window (ie: Help box)
-            self.help_box = Toplevel()
+        # disable Help button
+        partner.help_button.config(state=DISABLED)
 
-            # If users press cross at top, closes Help and 'releases' Help button
-            self.help_box.protocol('WM_DELETE_WINDOW', partial(self.close_help, partner))
+        # Sets up child window (ie: Help box)
+        self.help_box = Toplevel()
 
-            # Set up GUI Frame
-            self.help_frame = Frame(self.help_box, width=300, bg=background)
-            self.help_frame.grid()
+        # If users press cross at top, closes Help and 'releases' Help button
+        self.help_box.protocol('WM_DELETE_WINDOW', partial(self.close_help, partner))
 
-            # Set up Help heading (row 0)
-            self.how_heading = Label(self.help_frame, text="Help / Instructions",
-                                     font="arial 14 bold", bg=background)
-            self.how_heading.grid(row=0)
+        # Set up GUI Frame
+        self.help_frame = Frame(self.help_box, width=300, bg=background)
+        self.help_frame.grid()
 
-            # Help text (label, row 1)
-            self.help_text = Label(self.help_frame,
-                                   text="",
-                                   justify=LEFT, width=40, bg=background, wrap=250)
-            self.help_text.grid(row=1)
+        # Set up Help heading (row 0)
+        self.how_heading = Label(self.help_frame, text="Help / Instructions",
+                                 font="arial 14 bold", bg=background)
+        self.how_heading.grid(row=0)
 
-            # Dismiss button (row 2)
-            self.dismiss_button = Button(self.help_frame, text="Dismiss",
-                                         width=10, bg="orange", font="arial 10 bold",
-                                         command=partial(self.close_help, partner))
-            self.dismiss_button.grid(row=0, column=1)
+        # Help text (label, row 1)
+        self.help_text = Label(self.help_frame,
+                               text="",
+                               justify=LEFT, width=40, bg=background, wrap=250)
+        self.help_text.grid(row=1)
 
-        def close_help(self, partner):
-            # put Help button back to normal...
-            partner.Help_button.config(state=NORMAL)
-            self.help_box.destroy()
+        # Dismiss button (row 2)
+        self.dismiss_button = Button(self.help_frame, text="Dismiss",
+                                     width=10, bg="orange", font="arial 10 bold",
+                                     command=partial(self.close_help, partner))
+        self.dismiss_button.grid(row=2)
+
+    def close_help(self, partner):
+        # put Help button back to normal...
+        partner.help_button.config(state=NORMAL)
+        self.help_box.destroy()
 
 
 # main routine
